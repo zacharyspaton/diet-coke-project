@@ -1,4 +1,5 @@
 import discord
+import os
 from discord.ext import commands, tasks
 from discord.ext.commands import Bot
 from itertools import cycle
@@ -105,8 +106,8 @@ async def change_status():
     ##if message.content.startswith('no u'):
       ##  await message.channel.send('https://i.imgur.com/yXEiYQ4.jpg')
 
-##for filename in os.listdir('./cogs'):
-	##if filename.endswith('.py'):
-		##client.load_extension(f'cogs.{filename[:-3]}')
+for filename in os.listdir('./cogs'):
+	if filename.endswith('.py'):
+		client.load_extension(f'cogs.{filename[:-3]}')
 
 client.run(token)
