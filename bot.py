@@ -7,13 +7,15 @@ import random
 
 # CONFIG
 # ---------
-token = "NTY4OTM0NTczNzA3MTAwMjA5.XSW81w.itnrtP5sG_Fxh_bsPToaRmGAOrY" # This is what the bot uses to log into Discord.
-prefix = "!!" # This will be used at the start of commands.
-activity = discord.Game(name="with memes") #This will display as the activity on Discord.
-status = cycle(['Status 1', 'Status 2']) #Status to cycle through
+token="NTY4OTM0NTczNzA3MTAwMjA5.XSW81w.itnrtP5sG_Fxh_bsPToaRmGAOrY" # This is what the bot uses to log into Discord.
+prefix="!!" # This will be used at the start of commands.
+client = commands.Bot(command_prefix = prefix)#Leave this alone unless you know what you're doing
+activity=discord.Game(name="with memes") #This will display as the activity on Discord.
+status=cycle(['Status 1', 'Status 2']) #Status to cycle through
+bad_words=["bad", "bad2"]#Words that will automatically be deleted
+join_role="Member" #This role will automcatically be given to members who join
+joinleave=client.get_channel(576550257056284683)#Insert the ID of the channel that you want join and leave messages to appear in.
 # ----------
-
-client = commands.Bot(command_prefix = prefix)
 
 @client.event
 async def on_ready():
@@ -22,19 +24,35 @@ async def on_ready():
 	#await client.change_presence(status=discord.Status.online, activity=activity)
 
 @client.event
+async def on_message(message):
+    for word in bad_words:
+        if message.content.count(word) > 0:
+            print("A bad word was said")
+            await message.channel.purge(limit=1)
+
+
+@client.event
 async def on_member_join(member):
 	print(f'{member} joined the server')
+	await joinleave.send("Oof we've got another crate of autism incoming - its name is {member}")
 
 @client.event
 async def on_member_remove(member):
 	print(f'{member} left the server')
+	await joinleave.send("Kthx cya, {member} left")
 
-@client.event
-async def on_command_error(ctx, error):
-	if isinstance(error, commands.MissingRequiredArgument):
-		await ctx.send('You forgot to specify an argument!	')
+##@client.event
+##async def on_member_join(member, * role: discord.Role):
+	##user = member
+	##await user.add_roles(join_role)
+
+##@client.event ##Universal argument error
+##async def on_command_error(ctx, error):
+	##if isinstance(error, commands.MissingRequiredArgument):
+		##await ctx.send('You forgot to specify an argument!')
 
 @client.command()
+@commands.has_permissions(manage_messages="true")
 async def clear(ctx, amount=5):
 	##amount = amount + 1
 	await ctx.channel.purge(limit=amount)
