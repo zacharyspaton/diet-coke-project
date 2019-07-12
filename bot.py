@@ -7,7 +7,6 @@ import random
 
 # CONFIG
 # ---------
-token="NTY4OTM0NTczNzA3MTAwMjA5.XSW81w.itnrtP5sG_Fxh_bsPToaRmGAOrY" # This is what the bot uses to log into Discord.
 prefix="!!" # This will be used at the start of commands.
 client = commands.Bot(command_prefix = prefix)#Leave this alone unless you know what you're doing
 activity=discord.Game(name="with memes") #This will display as the activity on Discord.
