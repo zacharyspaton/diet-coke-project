@@ -13,7 +13,8 @@ activity=discord.Game(name="with memes") #This will display as the activity on D
 status=cycle(['Status 1', 'Status 2']) #Status to cycle through
 bad_words=["bad", "bad2"]#Words that will automatically be deleted
 join_role="Member" #This role will automcatically be given to members who join
-joinleave=client.get_channel(576550257056284683)#Insert the ID of the channel that you want join and leave messages to appear in.
+joinleave=client.get_channel(615477865961619478)#Insert the ID of the channel that you want join and leave messages to appear in.
+token = open("token.txt","r").read()
 # ----------
 
 @client.event
@@ -127,4 +128,4 @@ for filename in os.listdir('./cogs'):
 	if filename.endswith('.py'):
 		client.load_extension(f'cogs.{filename[:-3]}')
 
-client.run(token)
+client.run(token.strip())
