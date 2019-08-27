@@ -10,7 +10,7 @@ import random
 prefix="!!" # This will be used at the start of commands.
 client = commands.Bot(command_prefix = prefix)#Leave this alone unless you know what you're doing
 activity=discord.Game(name="with memes") #This will display as the activity on Discord.
-status=cycle(['Status 1', 'Status 2']) #Status to cycle through
+status=cycle(['U Gay', 'No u']) #Status to cycle through
 bad_words=["bad", "bad2"]#Words that will automatically be deleted
 join_role="Member" #This role will automcatically be given to members who join
 joinleave=client.get_channel(615477865961619478)#Insert the ID of the channel that you want join and leave messages to appear in.
