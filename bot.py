@@ -104,13 +104,6 @@ async def ping(ctx):
 	ping = round(client.latency * 1000)
 	await ctx.send(f'bruh. I aint gonna say pong, instead here is my latency - {ping}ms')
 
-@client.command()
-async def nigga(ctx):
-	responses = ['https://www.askideas.com/media/23/African-Girl-Weird-Face-Funny-Image.jpg',
-				'http://kenyanurse.com/wp-content/flagallery/ian-leave-from-school/bush-man-found-my-camera.jpg', 
-				'https://scontent.fsyd7-1.fna.fbcdn.net/v/t1.0-9/49103433_1591522480994599_361774789083267072_n.jpg?_nc_cat=105&_nc_oc=AQkKLCYZlmR_A6vo6Bz7EEoa3KELtbOY2nW3t896XH7DmKxKgP0tZMusN8_9auTCP_0&_nc_ht=scontent.fsyd7-1.fna&oh=f035ecbb579a8c67b9f9b43726e686f3&oe=5DA47E5A']
-	await ctx.send(f'Here is your nig: \n{random.choice(responses)}')
-
 @tasks.loop(seconds=10)
 async def change_status():
 	await client.change_presence(activity=discord.Game(next(status)))
